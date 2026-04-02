@@ -1,12 +1,15 @@
 setTimeout(function(){
-  var iframe = document.querySelector('iframe');
-  if(iframe) iframe.src = '//youtube.com/embed/rfTG4R775Dw';
-  var h4s = document.querySelectorAll('h4');
-  for(var i=0; i<h4s.length; i++){
-    if(h4s[i].textContent.indexOf('modalidade de bolsa')>-1){
-      var p = h4s[i].nextElementSibling;
-      while(p && p.tagName!=='P') p=p.nextElementSibling;
-      if(p) p.innerHTML = '<strong>Bolsista DTI-C</strong><br>'+
+  // 1. Replace video (works on main project page)
+  var f=document.querySelector('iframe');
+  if(f)f.src='//youtube.com/embed/rfTG4R775Dw';
+  
+  // 2. Fill bolsa CNPq section (works on main project page)
+  var h=document.querySelectorAll('h4');
+  for(var i=0;i<h.length;i++){
+    if(h[i].textContent.indexOf('modalidade de bolsa')>-1){
+      var p=h[i];
+      while(p=p.nextElementSibling){if(p.tagName==='P')break;}
+      if(p)p.innerHTML='<strong>Bolsista DTI-C</strong><br>'+
         'Graduação ou formação recente em Computação, Sistemas ou área correlata.<br>'+
         'Desenvolvimento de funcionalidades web/PWA, homologação, testes e apoio a releases estáveis.<br>'+
         'Bolsa CNPq DTI-C<br>20h<br><br>'+
@@ -21,4 +24,4 @@ setTimeout(function(){
       break;
     }
   }
-}, 1500);
+},1500);
